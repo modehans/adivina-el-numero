@@ -12,11 +12,14 @@ function getRandom(max) {
 //Visualización número aleatorio en consola
 console.log("Random number: " + randomNumber);
 
-
-function checkNum() {
-  //recoge el valor de la usuaria y lo muestra por consola
+function getNum(){
   const num = parseInt(inputNumber.value);
   console.log("El número elegido es el : " + num);
+  return num;
+}
+
+function checkNum() {
+   const num = getNum();
   //compara el valor usuaria con valor random
   if (num < 1 || num > 100) {
     text.innerHTML = "El número debe estar entre 1 y 100";
@@ -34,8 +37,7 @@ function checkNum() {
   counter.innerHTML = (`Número de intentos: ${acc}`);
 }
 
-function handleClickButton(ev) {
-   ev.preventDefault();
+function handleClickButton() {
    checkNum();
    upcounter();
 }
