@@ -1,6 +1,7 @@
 # **Evaluación intermedia módulo 2**
 
-##Enunciado:
+## Enunciado:
+
 El ejercicio consiste en crear una página para adivinar un número. Los puntos obligatorios a resolver:
 
 1. Maquetar Html.
