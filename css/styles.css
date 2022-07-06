@@ -1,9 +1,9 @@
 .header {
   text-align: center;
   height: 20vh;
-  padding: 40px 0;
+  padding: 50px 0;
   font-size: 30px;
-  color: #099d8d;
+  color: #b490ca;
   font-weight: 600;
   font-family: 'Open Sans', sans-serif;
 }
@@ -35,4 +35,8 @@
 .input {
   width: 200px;
   text-align: center;
+}
+
+.text {
+  font-weight: 600;
 }
