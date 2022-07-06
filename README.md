@@ -20,3 +20,7 @@ El ejercicio consiste en crear una página para adivinar un número. Los puntos 
 8. Escribir la pista según se cumpla una u otra condición al hacer click en _Prueba_
 
 9. Actualizar el contador de juego y visualizar en la parte inferior cada vez que se pulse prueba.
+
+## Bonus
+
+creado botón de iniciar nuevo juego
