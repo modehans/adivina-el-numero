@@ -19,3 +19,20 @@
   font-family: 'Open Sans', sans-serif;
   gap: 30px;
 }
+
+.button {
+  border-radius: 5px;
+  height: 30px;
+  font-size: 20px;
+  background-color: white;
+  border: 2px solid #099d8d;
+  color: #099d8d;
+  padding: 0 5px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.input {
+  width: 200px;
+  text-align: center;
+}

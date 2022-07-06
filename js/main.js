@@ -12,18 +12,29 @@ function getRandom(max) {
 console.log("Random number: " + randomNumber);
 
 
-
-//Coger valor usuaria y mostrarlo por la consola
-function getNum() {
+function checkNum() {
+  //recoge el valor de la usuaria y lo muestra por consola
   const num = parseInt(inputNumber.value);
   console.log("El número elegido es el : " + num);
+  //compara el valor usuaria con valor random
+  if (num < 1 || num > 100) {
+    text.innerHTML = "El número debe estar entre 1 y 100";
+  } else if (num < randomNumber) {
+    text.innerHTML = "Demasiado bajo";
+  } else if (num > randomNumber) {
+    text.innerHTML = "Demasiado alto";
+  } else if (num === randomNumber) {
+    text.innerHTML = "¡¡¡Has ganado campeona!!!";
+  }
 }
+
 function handleClickButton(ev) {
   //evitar que envíe el número
   ev.preventDefault();
   //Coge el número
-  getNum();
-
+  checkNum();
 }
+
+
 
 button.addEventListener("click", handleClickButton);
