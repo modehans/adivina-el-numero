@@ -10,3 +10,20 @@ function getRandom(max) {
 }
 //Visualización número aleatorio en consola
 console.log("Random number: " + randomNumber);
+
+
+
+//Coger valor usuaria y mostrarlo por la consola
+function getNum() {
+  const num = parseInt(inputNumber.value);
+  console.log("El número elegido es el : " + num);
+}
+function handleClickButton(ev) {
+  //evitar que envíe el número
+  ev.preventDefault();
+  //Coge el número
+  getNum();
+
+}
+
+button.addEventListener("click", handleClickButton);
