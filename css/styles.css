@@ -7,8 +7,7 @@
   font-weight: 600;
   font-family: 'Open Sans', sans-serif;
 }
-
-.form {
+.main {
   background-image: linear-gradient(to top, #099d8d 0%, #b490ca 100%);
   width: 100%;
   height: 80vh;
@@ -18,6 +17,14 @@
   align-items: center;
   font-family: 'Open Sans', sans-serif;
   gap: 30px;
+  padding: 30px;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .button {
@@ -26,24 +33,23 @@
   background-color: white;
   border: 2px solid #099d8d;
   color: #099d8d;
-  padding: 0 5px;
+  padding: 10px;
   line-height: 1;
   cursor: pointer;
 }
 
 .input {
-  width: 200px;
+  font-size: 20px;
   text-align: center;
   border-style: none;
   height: 30px;
   border-radius: 5px;
 }
+.input::placeholder {
+  font-size: 14px;
+}
 
 .text {
   font-weight: 600;
-}
-
-.link {
-  text-decoration: none;
-  padding: 5px;
+  text-align: center;
 }

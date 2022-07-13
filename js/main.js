@@ -4,54 +4,81 @@ const inputNumber = document.querySelector('.js_inputNumber');
 const testButton = document.querySelector('.js_btnPlay');
 const clueText = document.querySelector('.js_clueText');
 const triesElement = document.querySelector('.js_tries');
-
+const playAgainBtn = document.querySelector('.js_playAgainBtn');
+let numberUser = '';
 //FUNCIONES
-//Generador de números desde 1 a valor metido en linea 1
 function getRandomNumber(max) {
   return Math.ceil(Math.random() * max);
 }
-//Recoge número de la usuaria
+
 function getNumUser() {
   const num = parseInt(inputNumber.value);
+  inputNumber.value = num; //Muestra el redondeo a entero por si introduce comas o expoenciales
   console.log(`El número elegido es el :  ${num}`);
   return num;
 }
-//Escribir en el HTML las pistas
+
+function checkNum() {
+  if (isNaN(numberUser)) {
+    renderClueTex(`No es un número. Introduce un número entre 1 y 100`);
+  } else if (numberUser < 1 || numberUser > 100) {
+    renderClueTex(`El número debe estar entre 1 y 100`);
+  } else if (numberUser < randomNumber) {
+    renderClueTex(`Demasiado bajo`);
+  } else if (numberUser > randomNumber) {
+    renderClueTex(`Demasiado alto`);
+  } else if (numberUser === randomNumber) {
+    renderClueTex(`¡¡¡Has ganado campeona!!!`);
+  }
+}
 function renderClueTex(message) {
   clueText.innerHTML = message;
 }
-//Compara número usuaria con valor generado automáticamente
-function checkNum() {
-  const num = getNumUser();
-  //compara el valor usuaria con valor random
-  if (isNaN(num)) {
-    renderClueTex('No es un número.Introduzca un número entre 1 y 100');
-  } else if (num < 1 || num > 100) {
-    renderClueTex('El número debe estar entre 1 y 100');
-  } else if (num < randomNumber) {
-    renderClueTex('Demasiado bajo');
-  } else if (num > randomNumber) {
-    renderClueTex('Demasiado alto');
-  } else if (num === randomNumber) {
-    renderClueTex('¡¡¡Has ganado campeona!!!');
+
+function upCounter() {
+  if (isNaN(numberUser) == false) {
+    triesCounter += 1;
+    triesElement.innerHTML = ` ${triesCounter}`;
   }
 }
-// Contador
-function upcounter() {
-  triesCounter += 1;
+function resetCounter() {
+  triesCounter = 0;
   triesElement.innerHTML = ` ${triesCounter}`;
 }
 
+function resetInputNumber() {
+  inputNumber.value = '';
+}
+function enterTestButton(ev) {
+  if (ev.key === 'Enter') {
+    ev.preventDefault();
+    handleClickButton(ev);
+  }
+}
 function handleClickButton(ev) {
   ev.preventDefault();
+  numberUser = getNumUser();
   checkNum();
-  upcounter();
+  upCounter();
 }
+
+function handleResetButton(ev) {
+  ev.preventDefault();
+  resetCounter();
+  renderClueTex(`Adivina el nuevo número`);
+  resetInputNumber();
+  randomNumber = getRandomNumber(100);
+  console.log(`New random number: ${randomNumber}`);
+}
+
 //EVENTOS
 testButton.addEventListener('click', handleClickButton);
+playAgainBtn.addEventListener('click', handleResetButton);
+inputNumber.addEventListener('click', resetInputNumber);
+inputNumber.addEventListener('keypress', enterTestButton);
 
 //CÓDIGO QUE SE EJECUTA CUANDO CARGA LA PÁGINA
 let triesCounter = 0;
-//Genera un número aleatorio entre 1 y 100
-const randomNumber = getRandomNumber(100);
+let randomNumber = getRandomNumber(100);
 console.log(`Random number: ${randomNumber}`);
+renderClueTex('Escribe el número y pulsa Prueba');
