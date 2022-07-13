@@ -24,4 +24,9 @@ El ejercicio consiste en crear una página para adivinar un número. Los puntos 
 
 ## Bonus
 
-creado botón de iniciar nuevo juego
+1. Al pulsar el botón empieza de nuevo, se vacia el input de entrada, se genera un nuevo número aleatorio, el contador vuelve a 0 y aparece un nuevo mensaje en el espacio de pistas.
+2. Al hacer click en el input vacía la entrada.
+3. Después de introducir un número si pulsamos intro en el teclado se procesa igual que si ubiera pulsado el botón prueba.
+4. Comentarios cuando no es un número o cuando el n
+   úmero no está dentro del rango.
+5. Cuando no es un número o no se ha introducido ningún valor al pulsar probar o intro no aumenta el contador.
