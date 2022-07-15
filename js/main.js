@@ -1,84 +1,104 @@
 'use strict';
 //Elementos del HTML
 const inputNumber = document.querySelector('.js_inputNumber');
-const testButton = document.querySelector('.js_btnPlay');
-const clueText = document.querySelector('.js_clueText');
-const triesElement = document.querySelector('.js_tries');
-const playAgainBtn = document.querySelector('.js_playAgainBtn');
-let numberUser = '';
-//FUNCIONES
-function getRandomNumber(max) {
-  return Math.ceil(Math.random() * max);
-}
+const testButton = document.querySelector('.js_testButton');
+const validationInfo = document.querySelector('.js_validationInfo');
+const numAttempts = document.querySelector('.js_numAttempts');
+const resetButton = document.querySelector('.js_resetButton');
 
-function getNumUser() {
-  const num = parseInt(inputNumber.value);
-  inputNumber.value = num; //Muestra el redondeo a entero por si introduce comas o expoenciales
+let counter = 0;
+let userNumber = '';
+const maxCounter = 10;
+
+//FUNCIONES
+const getRandomNumber = (max) => {
+  return Math.ceil(Math.random() * max);
+};
+
+const getUserNumber = () => {
+  const num = parseFloat(inputNumber.value);
   console.log(`El número elegido es el :  ${num}`);
   return num;
-}
+};
 
-function checkNum() {
-  if (isNaN(numberUser)) {
-    renderClueTex(`No es un número. Introduce un número entre 1 y 100`);
-  } else if (numberUser < 1 || numberUser > 100) {
-    renderClueTex(`El número debe estar entre 1 y 100`);
-  } else if (numberUser < randomNumber) {
-    renderClueTex(`Demasiado bajo`);
-  } else if (numberUser > randomNumber) {
-    renderClueTex(`Demasiado alto`);
-  } else if (numberUser === randomNumber) {
-    renderClueTex(`¡¡¡Has ganado campeona!!!`);
+const updateValidationInfo = (message) => {
+  validationInfo.innerHTML = message;
+};
+
+const validateNumber = () => {
+  if (isNaN(userNumber)) {
+    updateValidationInfo('No es un número. Introduce un número entre 1 y 100');
+  } else if (userNumber < 1 || userNumber > 100) {
+    updateValidationInfo('El número debe estar entre 1 y 100');
+  } else if (userNumber < randomNumber) {
+    updateValidationInfo('Demasiado bajo');
+  } else if (userNumber > randomNumber) {
+    updateValidationInfo('Demasiado alto');
+  } else if (userNumber === randomNumber) {
+    updateValidationInfo('¡¡¡Has ganado campeona!!!');
   }
-}
-function renderClueTex(message) {
-  clueText.innerHTML = message;
-}
+};
+const enableButtons = (enable) => {
+  testButton.disabled = !enable;
+  resetButton.disabled = !enable;
+};
 
-function upCounter() {
-  if (isNaN(numberUser) == false) {
-    triesCounter += 1;
-    triesElement.innerHTML = ` ${triesCounter}`;
+const icreaseCounter = () => {
+  if (counter < maxCounter) {
+    counter += 1;
+    numAttempts.innerHTML = ` ${counter}`;
+  } else {
+    updateValidationInfo('Ups!! Has llegado al número máximo de intentos');
+    enableButtons(false);
+    setTimeout(handleResetButton, 6000);
   }
-}
-function resetCounter() {
-  triesCounter = 0;
-  triesElement.innerHTML = ` ${triesCounter}`;
-}
+};
 
-function resetInputNumber() {
+const resetCounter = () => {
+  counter = 0;
+  numAttempts.innerHTML = ` ${counter}`;
+};
+
+const resetInputNumber = () => {
   inputNumber.value = '';
-}
-function enterTestButton(ev) {
-  if (ev.key === 'Enter') {
+};
+
+const handleEnterKey = (ev) => {
+  if (ev && ev.key === 'Enter') {
     ev.preventDefault();
     handleClickButton(ev);
   }
-}
-function handleClickButton(ev) {
-  ev.preventDefault();
-  numberUser = getNumUser();
-  checkNum();
-  upCounter();
-}
+};
 
-function handleResetButton(ev) {
-  ev.preventDefault();
+const handleClickButton = (ev) => {
+  if (ev) {
+    ev.preventDefault();
+  }
+  userNumber = getUserNumber();
+  validateNumber();
+  icreaseCounter();
+};
+
+const handleResetButton = (ev) => {
+  if (ev) {
+    ev.preventDefault();
+  }
+  testButton.disabled = true;
   resetCounter();
-  renderClueTex(`Adivina el nuevo número`);
+  updateValidationInfo('Adivina el nuevo número');
   resetInputNumber();
+  enableButtons(true);
   randomNumber = getRandomNumber(100);
   console.log(`New random number: ${randomNumber}`);
-}
+};
 
 //EVENTOS
 testButton.addEventListener('click', handleClickButton);
-playAgainBtn.addEventListener('click', handleResetButton);
+resetButton.addEventListener('click', handleResetButton);
 inputNumber.addEventListener('click', resetInputNumber);
-inputNumber.addEventListener('keypress', enterTestButton);
+inputNumber.addEventListener('keypress', handleEnterKey);
 
 //CÓDIGO QUE SE EJECUTA CUANDO CARGA LA PÁGINA
-let triesCounter = 0;
+
 let randomNumber = getRandomNumber(100);
 console.log(`Random number: ${randomNumber}`);
-renderClueTex('Escribe el número y pulsa Prueba');
