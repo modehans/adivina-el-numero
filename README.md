@@ -1,4 +1,4 @@
-# **Evaluación intermedia módulo 2**
+# **Adivina el número**
 
 ## Enunciado:
 
