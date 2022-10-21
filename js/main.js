@@ -1,5 +1,5 @@
 'use strict';
-//Elementos del HTML
+
 const inputNumber = document.querySelector('.js_inputNumber');
 const testButton = document.querySelector('.js_testButton');
 const validationInfo = document.querySelector('.js_validationInfo');
@@ -10,7 +10,6 @@ let counter = 0;
 let userNumber = '';
 const maxCounter = 10;
 
-//FUNCIONES
 const getRandomNumber = (max) => {
   return Math.ceil(Math.random() * max);
 };
@@ -61,16 +60,17 @@ const resetCounter = () => {
 
 const resetInputNumber = () => {
   inputNumber.value = '';
+  validationInfo.innerHTML = 'Escribe el número y pulsa Prueba';
 };
 
 const handleEnterKey = (ev) => {
   if (ev && ev.key === 'Enter') {
     ev.preventDefault();
-    handleClickButton(ev);
+    handleValidateButton(ev);
   }
 };
 
-const handleClickButton = (ev) => {
+const handleValidateButton = (ev) => {
   if (ev) {
     ev.preventDefault();
   }
@@ -92,8 +92,7 @@ const handleResetButton = (ev) => {
   console.log(`New random number: ${randomNumber}`);
 };
 
-//EVENTOS
-testButton.addEventListener('click', handleClickButton);
+testButton.addEventListener('click', handleValidateButton);
 resetButton.addEventListener('click', handleResetButton);
 inputNumber.addEventListener('click', resetInputNumber);
 inputNumber.addEventListener('keypress', handleEnterKey);
