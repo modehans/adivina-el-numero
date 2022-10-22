@@ -8,19 +8,6 @@ You must enter a number in the input and press the "Test" button or press enter.
 The tracks and the number of attempts can be displayed below.
 Hurry up because you only have 10 attempts.
 
-## Start 🚀
-
-### Installation 🔧
-
-Run the following command to install all the packages needed
-
-> npm install
-
-### Run
-
-Run the command
-
-> npm start
 
 ## Stack 🛠️
 
